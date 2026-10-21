@@ -17,6 +17,21 @@ class Check {
     // of each for the whole program, not one per anything. Week 6 as well.
     static int passed = 0;
     static int failed = 0;
+    static boolean finished = false;
+
+    // A hook: code Java runs as the program ends, whether main finished or
+    // stopped on an error. If done() never ran, it says so, with the count of
+    // the checks that did: a main that stopped early has checks it never
+    // reached, so it never says "Looks shipshape". `() -> { ... }` is a
+    // function written in place, which is week 10.
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (!finished) {
+                IO.println("Check.done() never ran: " + passed + " passed, " + failed
+                           + " failed before the program ended");
+            }
+        }));
+    }
 
     // Four `is` here and two below, all with the same name, one per kind of
     // value. Java picks the one whose types match what you pass: the first
@@ -61,6 +76,7 @@ class Check {
     // The last line of main: Pyret's "Looks shipshape", or the two counts.
     // With no checks at all, it says so: nothing failed, and nothing passed.
     static void done() {
+        finished = true;
         if (passed + failed == 0) {
             IO.println("No checks yet: put a Check.is line in main for each example");
         } else if (failed == 0) {
