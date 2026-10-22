@@ -60,6 +60,12 @@ class Check {
     static <E extends Enum<E>> void is(E got, E expected) { record(got.equals(expected), "" + got, "" + expected); }
     static void is(Record got, Record expected)           { record(got.equals(expected), "" + got, "" + expected); }
 
+    // And one for two lists, which asks .equals too: the same elements, in
+    // the same order. Check.is(Lists.filter(h -> h > 8, hours), List.of(9, 11));
+    static void is(java.util.List<?> got, java.util.List<?> expected) {
+        record(got.equals(expected), "" + got, "" + expected);
+    }
+
     // Every `is` ends up here with the verdict and both values as text, so a
     // failure prints the same way whatever the type was. `"" + got` is how a
     // number becomes text: + joins, and joins a number onto text without
