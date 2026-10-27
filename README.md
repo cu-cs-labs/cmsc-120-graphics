@@ -8,6 +8,8 @@ for Java.
   the rest: the shapes A1's flags were drawn with. Keep it beside your files
   and do not edit it. The comment at its top lists everything it has.
 - `src/Check.java` — `Check.is(...)`, as in every Java week.
+- `src/Lists.java` — `Lists.filter`, `Lists.map` and `Lists.fold`, Pyret's three,
+  in Pyret's order. Keep it beside your files and do not edit it.
 - `src/Reading.java` — runs the reading's own programs, which are in
   `src/chap03/` and the folders beside it (Drue Coles' listings, CC0,
   unchanged).
