@@ -60,9 +60,12 @@ class Check {
     static <E extends Enum<E>> void is(E got, E expected) { record(got.equals(expected), "" + got, "" + expected); }
     static void is(Record got, Record expected)           { record(got.equals(expected), "" + got, "" + expected); }
 
-    // And one for two lists, which asks .equals too: the same elements, in
-    // the same order. Check.is(Lists.filter(h -> h > 8, hours), List.of(9, 11));
-    static void is(java.util.List<?> got, java.util.List<?> expected) {
+    // And one for the lists of Lists.java, which asks .equals too: the same
+    // elements, in the same order. Check.is(Lists.filter(h -> h > 8, hours),
+    // List.of(9, 11)). Data is the name those lists answer to here, so that
+    // Check.java works with or without Lists.java beside it.
+    interface Data {}
+    static void is(Data got, Data expected) {
         record(got.equals(expected), "" + got, "" + expected);
     }
 
